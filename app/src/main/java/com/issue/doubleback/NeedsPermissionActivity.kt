@@ -43,6 +43,7 @@ class NeedsPermissionActivity : AppCompatActivity() {
                     permissionReq: MutableList<PermissionRequest>?,
                     token: PermissionToken?
                 ) {
+                    token?.continuePermissionRequest()
                     if (!oncePerLandingFlag) {      // repeated getting fired because of fragment show hide activities
                         var permissionList: MutableList<String> = mutableListOf()
                         permissionReq?.let {
@@ -55,7 +56,6 @@ class NeedsPermissionActivity : AppCompatActivity() {
                             displayMessg = "Please enable record audio permission"
                         }
                         showSettingsDialog(thisContext, displayMessg)
-
                         oncePerLandingFlag = true
                     }
 
